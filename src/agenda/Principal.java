@@ -1,5 +1,6 @@
 package agenda;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -19,33 +20,37 @@ public class Principal {
 		agenda = new Agenda("Franklin", "11 91111-11111");
 		
 		Scanner scanner = new Scanner(System.in);
-		while (true) {
+		boolean continuar = true;
+		while (continuar) {
 			System.out.print("Digite uma opção: ");
 			
 			String opcao = scanner.next();
 
 			System.out.println("Opção escolhida: " + opcao);
 
-			if (opcao.equals("1")) {
-				cadastrarContato();
-			}
-			if (opcao.equals("2")) {
-				listarContatos();    
-			}
-			if (opcao.equals("3")) {
-				editarContato();
-			}
-			if (opcao.equals("4")) {
-				excluirContato();
-			}
-			if (opcao.equals("9")) {
-				System.out.println("Saindo do programa Agenda ...");
-				break;
+			switch (opcao) {
+			  case "1":
+				  cadastrarContato();
+				  break;
+			  case "2":
+				  listarContatos();
+				  break;
+			  case "3":
+				  editarContato();
+				  break;
+			  case "4":
+				  excluirContato();
+				  break;
+			  case "9":
+				  continuar = false;
+				  System.out.println("Saindo do programa Agenda ...");
+				  break;
+			  default:
+				  System.out.println("Opção inválida!");
 			}
 
 		}
-		scanner.close();
-		
+		scanner.close();		
 	}
 	
 	public static void cadastrarContato() {
@@ -55,8 +60,10 @@ public class Principal {
 
 	public static void listarContatos() {
 		System.out.println("Listando contatos ...");		
-		String contatos = agenda.listarContatos();
-		System.out.println(contatos);
+		List<Contato> contatos = agenda.listarContatos();
+		for (Contato contato : contatos) {
+			System.out.println(contato.getNome());
+		}
 	}
 
 	public static void editarContato() {

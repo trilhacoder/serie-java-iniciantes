@@ -1,24 +1,26 @@
 package agenda;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Agenda {
 
-	public String nomeProprietario;
-	public String telefoneProprietario;
+	private String nomeProprietario;
+	private String telefoneProprietario;
 	// maria,11 9-1111-1111,maria@email.com/carlos,11 9-1111-1111,carlos@email.com
-	public String contatos;
+	private List<Contato> contatos;
 	
 	public Agenda(String nomeProprietario, String telefoneProprietario) {
 		this.nomeProprietario = nomeProprietario;
 		this.telefoneProprietario = telefoneProprietario;
-		this.contatos = "";
+		this.contatos = new ArrayList<>();
 	}
 
 	public void cadastrarContato(String nome, String telefone, String email) {
-		String contato = nome + "," + telefone + "," + email;
-		contatos = contatos + "/" + contato;
+		contatos.add(new Contato(nome, telefone, email));
 	}
 
-	public String listarContatos() {
+	public List<Contato> listarContatos() {
 		return contatos;
 	}
 
